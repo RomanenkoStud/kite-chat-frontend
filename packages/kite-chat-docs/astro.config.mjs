@@ -8,10 +8,11 @@ import tailwind from "@astrojs/tailwind";
 const mode = process.env.NODE_ENV;
 console.log(mode);
 
-const base = mode == 'test' ? '/test' : '';
+const base = mode == 'test' ? '/kite-chat-frontend/test' : '/kite-chat-frontend';
 
 // https://main.vitejs.dev/config/#using-environment-variables-in-config
-const {
+const { 
+  BACKEND_PACKAGE_IMPORT, 
   WS_ENDPOINT,
 } = loadEnv(mode, process.cwd(), '');
 
