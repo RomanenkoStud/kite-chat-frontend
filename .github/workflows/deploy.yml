@@ -24,11 +24,6 @@ jobs:
         with:
           ref: main
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
       - name: Restore build files
         id: cache-main-dist
         uses: actions/cache@v3
@@ -39,6 +34,12 @@ jobs:
       - name: List Cached Files
         if: steps.cache-main-dist.outputs.cache-hit == 'true'
         run: ls -l ./packages/kite-chat-docs/dist
+
+      - name: Set up Node.js
+        if: steps.cache-main-dist.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
       - name: Install dependencies
         if: steps.cache-main-dist.outputs.cache-hit != 'true'
@@ -75,7 +76,12 @@ jobs:
           path: ./packages/kite-chat-docs/dist
           key: ${{ runner.os }}-dist-test-${{ hashFiles('./package-lock.json') }}
 
+      - name: List Cached Files
+        if: steps.cache-test-dist.outputs.cache-hit == 'true'
+        run: ls -l ./packages/kite-chat-docs/dist/test
+
       - name: Set up Node.js
+        if: steps.cache-test-dist.outputs.cache-hit != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 18
