@@ -70,6 +70,7 @@ jobs:
           name: main-dist
 
       - name: Restore test build files
+        if: github.event.ref != 'refs/heads/test'
         id: cache-test-dist
         uses: actions/cache@v3
         with:
