@@ -78,6 +78,9 @@ jobs:
         with:
           name: main-dist
 
+      - name: List Restored Files
+        run: ls -l ./packages/kite-chat-docs/dist
+
       - name: Restore build files
         if: github.event.ref != 'refs/heads/test'
         id: cache-test-dist
