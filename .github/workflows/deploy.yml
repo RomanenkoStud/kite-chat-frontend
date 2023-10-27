@@ -83,7 +83,7 @@ jobs:
         id: cache-test-dist
         uses: actions/cache/restore@v3
         with:
-          path: ./packages/kite-chat-docs/dist/test
+          path: ./packages/kite-chat-docs/dist
           key: ${{ runner.os }}-dist-test-${{ hashFiles('./package-lock.json') }}
 
       - name: List Cached Files
@@ -117,7 +117,7 @@ jobs:
         uses: actions/cache/save@v3
         id: save-test-dist
         with:
-          path: ./packages/kite-chat-docs/dist/test
+          path: ./packages/kite-chat-docs/dist
           key: ${{ runner.os }}-dist-test-${{ hashFiles('./package-lock.json') }}
 
       - name: Upload Pages Artifact
