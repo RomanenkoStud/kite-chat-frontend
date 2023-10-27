@@ -47,7 +47,7 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          path: ./packages/kite-chat-docs/dist
+          path: ./node_modules
           key: ${{ runner.os }}-modules-main-${{ hashFiles('./package-lock.json') }}
 
       - name: Install dependencies
@@ -110,7 +110,7 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          path: ./packages/kite-chat-docs/dist
+          path: ./node_modules
           key: ${{ runner.os }}-modules-main-${{ hashFiles('./package-lock.json') }}
 
       - name: Install dependencies
