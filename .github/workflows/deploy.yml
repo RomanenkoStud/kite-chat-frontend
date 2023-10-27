@@ -51,7 +51,7 @@ jobs:
           key: ${{ runner.os }}-modules-main-${{ hashFiles('./package-lock.json') }}
 
       - name: Install dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        if: steps.cache-main-dist.outputs.cache-hit != 'true' && steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Build Docs
@@ -114,7 +114,7 @@ jobs:
           key: ${{ runner.os }}-modules-main-${{ hashFiles('./package-lock.json') }}
 
       - name: Install dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        if: steps.cache-test-dist.outputs.cache-hit != 'true' && steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Build Kite Chat component
