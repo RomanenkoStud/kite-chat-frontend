@@ -74,13 +74,20 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install dependencies
+        if: steps.cache-test-dist.outputs.cache-hit != 'true'
+        run: npm install
+
       - name: Build Kite Chat component
+        if: steps.cache-test-dist.outputs.cache-hit != 'true'
         run: npm run build -w @pragmasoft-ukraine/kite-chat-component
 
       - name: Build Kite Chat
+        if: steps.cache-test-dist.outputs.cache-hit != 'true'
         run: npm run build -w @pragmasoft-ukraine/kite-chat
 
       - name: Build Docs for Test
+        if: steps.cache-test-dist.outputs.cache-hit != 'true'
         run: npm run build:test -w @pragmasoft-ukraine/kite-chat-docs
 
       - name: Upload Pages Artifact
